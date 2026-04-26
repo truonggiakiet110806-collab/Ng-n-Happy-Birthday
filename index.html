@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bất ngờ cho Ngân</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="heart-bar"></div>
+
+    <div id="screen-clock" class="container clock-mode">
+        <div id="date" class="date-text"></div>
+        <div id="time" class="time-text"></div>
+        <div class="cute-message">Hãy kiên nhẫn một chút nhé, điều tuyệt vời nhất đang chờ cậu... ✨</div>
+    </div>
+
+    <div id="screen-wish" class="container wish-mode" style="display: none;">
+        <p id="typewriter-text" class="wish-text"></p>
+        <button id="btn-continue" onclick="showLogin()" class="btn-next" style="display: none;">Nhấn để tiếp tục</button>
+    </div>
+
+    <div id="screen-login" class="container login-mode" style="display: none;">
+        <div class="login-box cute-style">
+            <h2>Chào Ngân nhé! 🎀</h2> <div class="input-box">
+                <input type="text" id="username" required>
+                <label>Tên của cậu, Ngân nhé! ✨</label> </div>
+    
+            <div class="input-box">
+                <input type="password" id="password" required>
+                <label>Ngày sinh của cậu là... 🎂</label> </div>
+    
+            <button class="btn-signin" onclick="checkLogin()">MỞ QUÀ CHO CẬU 💙</button>
+        </div>
+    </div>
+
+
+
+    <div id="wish-scene" style="display: none;">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    
+        <div id="message-container">
+            <h1 class="fade-text-wish" id="line1"></h1>
+            <h1 class="fade-text-wish" id="line2"></h1>
+            <h1 class="fade-text-wish" id="line3"></h1>
+            <h1 class="fade-text-wish" id="line4"></h1>
+        </div>
+    </div>
+
+
+    
+    <div id="error-popup" class="error-popup" style="display: none;">
+    <div class="error-box">
+        <span class="error-icon">😿</span> 
+        <p class="error-message">Ôi! Sai tên hoặc mật khẩu rồi, bạn thử nhập lại xíu nha!</p>
+        <button class="btn-retry" onclick="closeErrorPopup()">Thử lại nè</button>
+    </div>
+</div>
+
+
+    <div id="final-gift-screen" class="gift-screen" style="display: none;">
+        <canvas id="canvas-rain" style="position: absolute; top:0; left:0; z-index: 1;"></canvas>
+        <canvas id="heart-canvas" style="position: absolute; top:0; left:0; z-index: 2;"></canvas>
+        
+        
+
+
+        <div id="text-display" class="fade-text-gift"></div>
+    </div>
+
+    <div id="gif-screen" style="display:none;">
+        <img src="car.gif" class="cute-gif">
+    </div>
+
+    <div id="text-rain-screen" style="display:none;">
+        <div id="text-container"></div>
+    </div>    
+        
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,770 @@
+body {
+    margin: 0; padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    overflow: hidden; /* Ngăn cuộn trang */
+    /* Giữ nền cũ nhưng thêm chút mờ đục để chữ nổi hơn */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.pexels.com/photos/27300290/pexels-photo-27300290.jpeg") no-repeat center;
+    background-size: cover;
+    color: white;
+}
+
+.container {
+    height: 100vh; display: flex;
+    flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* --- STYLE ĐỒNG HỒ --- */
+.date-text {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    font-family: 'Dancing Script', cursive; /* Phông chữ nghệ thuật */
+}
+
+.time-text {
+    font-size: 5rem; /* Siêu to */
+    font-weight: 700;
+    font-family: 'Pacifico', cursive; /* Phông chữ đồng hồ số nghệ thuật */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3); /* Hiệu ứng neon glow */
+}
+
+.cute-message {
+    font-size: 1.1rem;
+    margin-top: 20px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* --- STYLE LỜI CHÚC --- */
+.wish-mode {
+    padding: 0 10%; /* Căn lề rộng ra */
+}
+
+.wish-text {
+    font-family: 'Dancing Script', cursive; /* Phông chữ mềm mại */
+    font-size: 1.5rem;
+    line-height: 2; /* Dòng thưa ra */
+    max-width: 1500px; /* Dòng dài hơn */
+    margin-bottom: 30px;
+}
+
+.btn-next {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: none;
+    background: #FFB6C1; /* Màu hồng pastel dễ thương */
+    color: #555;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+    transition: 0.3s ease;
+}
+
+.btn-next:hover {
+    background: #FFC0CB;
+    transform: translateY(-3px);
+}
+
+/* --- STYLE ĐĂNG NHẬP --- */
+.login-box.cute-style {
+    /* Khung Glassmorphism mềm mại */
+    width: 380px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.12); /* Nền trong suốt hơn */
+    backdrop-filter: blur(20px);          /* Hiệu ứng mờ đục "kính" */
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 40px;                  /* Bo góc cực nhiều cho dễ thương */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.3); /* Ánh sáng hồng pastel tỏa ra */
+    text-align: center;
+    color: white;
+    position: relative;
+    /* Gộp các animation vào một dòng để chạy chuẩn */
+    animation: cuteAppear 1.2s ease-out, floatingBox 3s ease-in-out infinite;
+}
+
+.login-box h2 {
+    font-family: 'Pacifico', cursive; /* Phông chữ viết tay dễ thương */
+    color: #fff;
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    letter-spacing: 2px;
+}
+
+.login-box::after {
+    content: "❤️";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 2rem;
+    animation: heartBeat 1.5s infinite;
+}
+
+/* Style cho các ô nhập liệu (Input Box) */
+.input-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.15); /* Nền ô nhập mờ nhẹ */
+    border: 2px solid transparent;          /* Viền ẩn mặc định */
+    border-radius: 20px;                     /* Bo góc ô nhập */
+    outline: none;
+    font-size: 1rem;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s ease;
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+}
+
+/* Hiệu ứng khi nhấn vào ô nhập */
+.input-box input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #8EEBEC; /* Viền màu xanh mint khi focus */
+    box-shadow: 0 0 15px rgba(142, 235, 236, 0.3);
+}
+
+/* Style cho nhãn (Label) Username/Password */
+.input-box label {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    pointer-events: none; /* Không cho click vào label */
+    transition: 0.3s ease;
+}
+
+/* Hiệu ứng Label bay lên khi nhập liệu */
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -20px;
+    left: 10px;
+    font-size: 12px;
+    color: #8EEBEC; /* Màu label khi bay lên */
+    font-weight: 600;
+}
+
+/* Style cho nút Sign In */
+.btn-signin {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #FF9AA2 0%, #FFB7B2 100%); 
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+    transition: 0.4s ease;
+}
+
+/* Hiệu ứng khi di chuột vào nút */
+.btn-signin:hover {
+    background: linear-gradient(135deg, #FFB7B2 0%, #FF9AA2 100%);
+    box-shadow: 0 0 20px #FF9AA2;
+    transform: scale(1.05); /* Phóng to nhẹ khi di chuột */
+}
+
+/* --- HIỆU ỨNG NỀN TRÁI TIM --- */
+.heart-bar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none; /* ĐÃ SỬA: Không chặn click chuột */
+    z-index: -1;
+}
+
+.heart {
+    position: absolute;
+    bottom: -10px;
+    font-size: 2rem;
+    opacity: 0.7;
+    animation: moveHearts linear forwards;
+}
+
+/* --- ANIMATIONS CƠ BẢN --- */
+@keyframes moveHearts {
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+@keyframes floatingBox {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes cuteAppear {
+    0% { opacity: 0; transform: scale(0.5) translateY(-50px); }
+    60% { opacity: 1; transform: scale(1.1) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- MÀN HÌNH LỜI CHÚC --- */
+#wish-scene {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #2c164a 0%, #ff9aa2 100%);
+    display: none; 
+    justify-content: center; align-items: center;
+    flex-direction: column;
+    z-index: 100;
+    pointer-events: none; /* ĐÃ SỬA: Không chặn click khi ẩn */
+}
+
+#message-container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.fade-text-wish {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    margin: 0;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) translateY(40px) scale(0.9);
+    width: 90%;
+
+    opacity: 0;
+    visibility: hidden;
+
+    filter: blur(10px);
+
+    text-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+
+    transition: all 1.2s ease;
+}
+
+.fade-text-wish.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translate(-50%, -50%) translateY(0) scale(1);
+    filter: blur(0);
+
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff80ab,
+        0 0 40px #ff4081,
+        0 0 80px #ff0055;
+
+    animation: floatText 3s ease-in-out infinite, glowPulse 2s infinite;
+}
+
+@keyframes floatText {
+    0%   { transform: translate(-50%, -50%) translateY(0); }
+    50%  { transform: translate(-50%, -50%) translateY(-10px); }
+    100% { transform: translate(-50%, -50%) translateY(0); }
+}
+
+.fade-text.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- SAO BĂNG --- */
+.star {
+    position: absolute;
+    width: 2px; height: 120px;
+    background: linear-gradient(to bottom, white, transparent);
+    border-radius: 50%;
+    animation: shootingStar linear infinite;
+    opacity: 0;
+}
+
+.star:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; animation-duration: 4s; }
+.star:nth-child(2) { top: -20%; left: 70%; animation-delay: 1.5s; animation-duration: 3s; }
+.star:nth-child(3) { top: 40%; left: 90%; animation-delay: 2.5s; animation-duration: 5s; }
+.star:nth-child(4) { top: 20%; left: 50%; animation-delay: 0.5s; animation-duration: 3.5s; }
+
+@keyframes shootingStar {
+    0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    70% { opacity: 0.5; }
+    100% { transform: translate(600px, 600px) rotate(-45deg); opacity: 0; }
+}
+
+/* --- BÁO LỖI --- */
+.error-icon { font-size: 3rem; display: block; margin-bottom: 15px; }
+.error-message { color: #555; font-size: 1.1rem; margin-bottom: 20px; font-weight: 500; }
+.btn-retry {
+    background: #FF9AA2;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-retry:hover { background: #FFB7B2; transform: translateY(-2px); }
+
+/* --- CSS CHO BẢNG BÁO LỖI DỄ THƯƠNG --- */
+
+/* Lớp nền mờ phủ toàn màn hình */
+.error-popup {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Nền mờ đục */
+    display: flex;
+    justify-content: center; align-items: center;
+    z-index: 999; /* Đảm bảo nó luôn nằm trên cùng */
+    backdrop-filter: blur(5px); /* Làm mờ nền phía sau */
+}
+
+/* Khung nội dung lỗi */
+.error-box {
+    background: white;
+    padding: 30px;
+    border-radius: 25px; /* Bo góc cực nhiều */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 2px solid #FF9AA2; /* Viền hồng pastel */
+    animation: popupAppear 0.4s ease-out; /* Hiệu ứng xuất hiện */
+}
+
+@keyframes popupAppear {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Icon lỗi cute */
+.error-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Đoạn văn báo lỗi */
+.error-message {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Nút 'Thử lại' cute */
+.btn-retry {
+    background: #FF9AA2; /* Màu hồng pastel */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-retry:hover {
+    background: #FFB7B2; /* Màu khi di chuột vào */
+    transform: translateY(-2px);
+}
+
+
+/* sau khi đăng nhập */
+/* --- MÀN HÌNH QUÀ TẶNG (Đẹp, lung linh, neon) --- */
+.gift-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 9999;
+    background: #000; /* Nền đen để trái tim neon nổi bật */
+    display: flex; justify-content: center; align-items: center;
+}
+
+
+.fade-text-gift {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+
+    color: #ff80ab;
+
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff80ab,
+        0 0 40px #ff4081;
+
+    opacity: 0;
+
+    z-index: 9999;
+}
+
+.fade-text-gift.show {
+    animation: textFade 1.2s ease;
+}
+
+@keyframes textFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+.fade-text.show { opacity: 1 !important; }
+
+
+/* Đảm bảo thứ tự lớp (z-index) */
+#canvas-rain { z-index: 1; }
+#heart-canvas { z-index: 2; }
+
+#heart-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 2; /* Nằm trên mưa chữ */
+    /* Hiệu ứng tỏa sáng Neon hòa hợp với màu nền */
+    filter: blur(1px) drop-shadow(0 0 10px rgba(255, 182, 193, 0.7)) drop-shadow(0 0 20px rgba(255, 105, 180, 0.5));
+}
+
+
+/* Đảm bảo chữ hiển thị đè lên trên Canvas */
+#text-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 3; /* đủ dùng, không cần 99999 */
+
+    font-family: 'Pacifico', cursive !important;
+    color: white;
+    font-size: 4rem;
+
+    text-align: center;
+    width: 90%;
+
+    text-shadow: 
+        0 0 10px #ff0055,
+        0 0 20px #ff0055,
+        0 0 40px #ff80ab;
+
+    pointer-events: none;
+    opacity: 1;
+}
+
+/* Đảm bảo khung chứa hiển thị đúng */
+#final-gift-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: black;
+    overflow: hidden;
+}
+
+.countdown-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+
+    font-family: 'Dancing Script', cursive;
+    font-size: 7rem;
+
+    color: #ff80ab;
+
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff80ab,
+        0 0 40px #ff4081,
+        0 0 80px #ff0055;
+
+    opacity: 0;
+
+    z-index: 9999;
+}
+
+/* 💥 animation thật sự nằm ở đây */
+.countdown-text.show {
+    animation: zoomFade 0.7s ease;
+}
+
+@keyframes zoomFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes pulseGlow {
+    0% { transform: translate(-50%, -50%) scale(0.5); }
+    50% { transform: translate(-50%, -50%) scale(1.5); }
+    100% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow:
+            0 0 10px #fff,
+            0 0 20px #ff80ab,
+            0 0 40px #ff4081;
+    }
+    50% {
+        text-shadow:
+            0 0 20px #fff,
+            0 0 40px #ff4081,
+            0 0 80px #ff0055;
+    }
+}
+
+
+.scan-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 3.8rem;
+    text-align: center;
+    width: 90%;
+
+    font-family: 'Orbitron', sans-serif;
+
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.1) 30%,
+        rgba(255,255,255,1) 50%,
+        rgba(255,255,255,0.1) 70%,
+        transparent 100%
+    );
+
+    background-size: 200% 100%;
+    background-position: -200% 0;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    opacity: 0;
+
+    filter: drop-shadow(0 0 15px #ff4081);
+
+    transition: opacity 0.5s ease;
+}
+
+/* tia sáng quét */
+.scan-text.show {
+    animation: scanReveal 1.6s ease forwards;
+}
+
+@keyframes scanReveal {
+    0% {
+        opacity: 0;
+        background-position: -200% 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        background-position: 200% 0;
+    }
+}
+
+
+
+@keyframes popGlow {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+        filter: blur(10px);
+    }
+    40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+        filter: blur(0px);
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(0.95) rotate(1deg);
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(1.05) rotate(-1deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.glow-show {
+    animation: popGlow 0.9s ease-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.6s ease forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+        filter: blur(10px);
+    }
+}
+
+
+#gif-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    z-index: 99999;
+}
+
+.cute-gif {
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    animation: popIn 0.8s ease;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+
+
+
+
+
+
+#text-rain-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    background: radial-gradient(circle, #1a002a, #000);
+    perspective: 800px; /* 🔥 tạo chiều sâu thật */
+}
+
+#text-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* 🌧 chữ rơi */
+.falling-text {
+    position: absolute;
+    top: -50px;
+    color: #ff80ab;
+    font-family: 'Dancing Script', cursive;
+
+    animation: fall linear infinite;
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.6),
+        0 0 10px rgba(255,128,171,0.6);
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) translateZ(0);
+    }
+    100% {
+        transform: translateY(110vh) translateZ(-200px);
+    }
+}
+
+/* ❄️ tuyết */
+.snow {
+    position: absolute;
+    top: -10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+
+    animation: snowFall linear infinite;
+}
+
+@keyframes snowFall {
+    0% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(110vh);
+    }
+}
+
+
+#gif-screen {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: all 1s ease;
+}
+
+/* 💥 hiệu ứng biến mất */
+#gif-screen.hide {
+    opacity: 0;
+    transform: scale(0.8) translateY(-40px);
+}
