@@ -1,5 +1,5 @@
 // Thiết lập thời gian mục tiêu (29/04/2026, 00:00:00)
-const targetDate = new Date(2026, 3, 27, 14, 10, 0); 
+const targetDate = new Date(2026, 3, 29, 0, 0, 0); 
 const fullText = `Happy Brithday Nguyễn Bảo Ngân nhé! 🎉\n Chút cậu bước sang tuổi mới vẫn luôn xinh đẹp, giỏi giang và đặt biệt là luôn hạnh phúc với những gì mình lựa chọn.\n Hy vọng hôm nay sẽ là một ngày thật đáng nhớ - tràn ngập niềm vui, tiếng cười và những điều bất ngờ dễ thương dành riêng cho cậu.\n Tỏa sáng thật rực rỡ nhé! 💙✨\n Mong rằng mọi điều tuyệt vời nhất sẽ luôn đến với cậu, không chỉ hôm nay mà cả những ngày sau nữa! 🌷\n ..... \n "À mà nè... thử nhập tên và password là ngày sinh của cậu xem sao, biết đâu có bất ngờ đang chờ phía sau đó 😆💙"`;
 // Cập nhật đồng hồ
 function updateClock() {
