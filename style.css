@@ -768,3 +768,34 @@ body {
     opacity: 0;
     transform: scale(0.8) translateY(-40px);
 }
+
+
+
+
+
+#music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: linear-gradient(135deg, #ff9aa2, #ffdde1);
+    color: white;
+    font-size: 1.5rem;
+
+    cursor: pointer;
+    z-index: 9999;
+
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.7);
+
+    transition: 0.3s;
+}
+
+#music-btn:hover {
+    transform: scale(1.15);
+}
